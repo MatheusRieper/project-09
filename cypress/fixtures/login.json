@@ -1,0 +1,28 @@
+{
+    "invalid": [
+        {
+            "scenario": "email invalido",
+            "email": "email.com",
+            "password": "secret_sauce",
+            "message": "Epic sadface: Username and password do not match any user in this service"
+        },
+                {
+            "scenario": "password invalida",
+            "email": "standard_user",
+            "password": "secretsauce",
+            "message": "Epic sadface: Username and password do not match any user in this service"
+        },
+                {
+            "scenario": "campo email vazio",
+            "email": "",
+            "password": "secret_sauce",
+            "message": "Epic sadface: Username is required"
+        },
+                {
+            "scenario": "campo password vazio",
+            "email": "email.com",
+            "password": "",
+            "message": "Epic sadface: Password is required"
+        }
+    ]
+}
