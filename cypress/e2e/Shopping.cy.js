@@ -12,19 +12,26 @@ describe('Shopping', function () {
 
     it('should complete the purchase successfully', () => {
 
-      cy.addProductToCart('sauce-labs-backpack')
-      cy.addProductToCart('sauce-labs-bike-light')
-      cy.addProductToCart('sauce-labs-bolt-t-shirt')
-      cy.addProductToCart('sauce-labs-fleece-jacket')
+      cy.addProductToCart([
+        'sauce-labs-backpack',
+        'sauce-labs-bike-light',
+        'sauce-labs-bolt-t-shirt',
+        'sauce-labs-fleece-jacket'
+      ])
+
+      cy.removeProductToCart([
+        'sauce-labs-bolt-t-shirt',
+        'sauce-labs-bike-light'
+      ])
 
       cy.goToCheckout()
 
-      cy.fillCheckoutForm(
+      /cy.fillCheckoutForm(
         Cypress.env('ADMIN_FIRSTNAME'),
         Cypress.env('ADMIN_LASTNAME'),
         Cypress.env('ADMIN_CODE')
       )
-    
+
       cy.finishCheckout()
       cy.validatePurchaseSuccess()
     })

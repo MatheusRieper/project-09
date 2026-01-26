@@ -48,12 +48,28 @@ Cypress.Commands.add('login', (email, password) => {
         .click()
 })
 
-Cypress.Commands.add('addProductToCart', (productId) => {
+Cypress.Commands.add('addProductToCart', (products) => {
 
-    cy.get(`#add-to-cart-${productId}`)
-        .should('be.visible')
-        .click()
+    const items = Array.isArray(products) ? products : [products]
+
+    items.forEach((product) => {
+        cy.get(`#add-to-cart-${product}`)
+            .should('be.visible')
+            .click()
+    })
 })
+
+Cypress.Commands.add('removeProductToCart', (products) => {
+    
+    const items = Array.isArray(products) ? products : [products]
+
+    items.forEach((product) => {
+        cy.get(`#remove-${product}`)
+            .should('be.visible')
+            .click()
+    })
+})
+
 
 Cypress.Commands.add('fillCheckoutForm', (firstName, lastName, postalCode) => {
 
@@ -94,5 +110,5 @@ Cypress.Commands.add('finishCheckout', () => {
 Cypress.Commands.add('validatePurchaseSuccess', () => {
 
     cy.contains('Thank you for your order!')
-    .should('be.visible')
+        .should('be.visible')
 }) 
